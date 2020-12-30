@@ -1,3 +1,4 @@
+import 'package:eat_well_review/widgets/screens/inquiry/inquiry_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ final Map<String, _ScreenBuilder> _routeBuilders = {
   SplashScreen.routeName: (context) => SplashScreen(),
   LoginScreen.routeName: (context) => LoginScreen(),
   InquiriesScreen.routeName: (context) => InquiriesScreen(),
+  InquiryScreen.routeName: (context) => InquiryScreen(),
 };
 
 class RouteGenerator {

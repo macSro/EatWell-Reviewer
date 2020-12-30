@@ -1,3 +1,5 @@
+import 'package:eat_well_review/bloc/inquiries/inquiries_bloc.dart';
+import 'package:eat_well_review/bloc/inquiries/inquiries_event.dart';
 import 'package:eat_well_review/bloc/user/user_bloc.dart';
 import 'package:eat_well_review/bloc/user/user_state.dart';
 import 'package:eat_well_review/widgets/screens/inquiries/inquiries_screen.dart';
@@ -21,7 +23,7 @@ class SplashScreen extends StatelessWidget {
         } else {
           //State has to be UserAuthenticated here.
           Navigator.pushReplacementNamed(context, InquiriesScreen.routeName);
-          //TODO: BlocProvider.of<InquiriesBloc>(context).add(FetchInquiries());
+          BlocProvider.of<InquiriesBloc>(context).add(FetchInquiries());
         }
       },
       child: Container(

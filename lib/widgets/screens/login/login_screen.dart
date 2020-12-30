@@ -1,3 +1,5 @@
+import 'package:eat_well_review/bloc/inquiries/inquiries_bloc.dart';
+import 'package:eat_well_review/bloc/inquiries/inquiries_event.dart';
 import 'package:eat_well_review/bloc/user/user_bloc.dart';
 import 'package:eat_well_review/bloc/user/user_state.dart';
 import 'package:eat_well_review/widgets/misc/loading.dart';
@@ -85,6 +87,6 @@ class LoginScreen extends StatelessWidget {
 
   _navigateToInquiriesScreen(context) {
     Navigator.of(context).pushReplacementNamed(InquiriesScreen.routeName);
-    //BlocProvider.of<InquiriesBloc>(context).add(FetchInquiries());
+    BlocProvider.of<InquiriesBloc>(context).add(FetchInquiries());
   }
 }
