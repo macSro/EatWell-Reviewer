@@ -147,7 +147,7 @@ class _LoginFormState extends State<LoginForm> {
     if (_formKey.currentState.validate()) {
       BlocProvider.of<UserBloc>(context).add(
         SignIn(
-          email: emailController.text,
+          email: emailController.text.toLowerCase(),
           password: passwordController.text,
         ),
       );

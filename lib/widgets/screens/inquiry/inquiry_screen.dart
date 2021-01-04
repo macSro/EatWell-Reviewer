@@ -3,6 +3,7 @@ import 'package:eat_well_review/bloc/inquiry/inquiry_state.dart';
 import 'package:eat_well_review/models/inquiry.dart';
 import 'package:eat_well_review/widgets/misc/loading.dart';
 import 'package:eat_well_review/widgets/misc/scaffold.dart';
+import 'package:eat_well_review/widgets/screens/error/error_screen.dart';
 import 'package:eat_well_review/widgets/screens/inquiry/inquiry_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,10 +17,18 @@ class InquiryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<InquiryBloc, InquiryState>(
       listenWhen: (previous, current) =>
-          previous is InquirySelected && current is InquiryResolved,
-      listener: (context, state) => (state as InquiryResolved).successful
-          ? print('successful')
-          : print('failed'),
+          previous is InquiryLoading && current is InquiryResolved,
+      listener: (context, state) {
+        if ((state as InquiryResolved).successful) {
+          Navigator.pop(context, (state as InquiryResolved).inquiryId);
+        } else {
+          Navigator.pushNamed(
+            context,
+            ErrorScreen.routeName,
+            arguments: kInquiryResolveFailed,
+          ).then((_) => Navigator.pop(context));
+        }
+      },
       child: BlocBuilder<InquiryBloc, InquiryState>(
         builder: (context, state) => MyScaffold(
           title: 'Inquiry details',

@@ -26,7 +26,10 @@ class InquiriesScreen extends StatelessWidget {
             : LoadingView(text: 'Loading inquiries...'),
         actions: [
           IconButton(
-            icon: Icon(Icons.logout),
+            icon: Icon(
+              Icons.logout,
+              color: Colors.redAccent,
+            ),
             onPressed: () {
               BlocProvider.of<UserBloc>(context).add(SignOut());
             },
@@ -49,15 +52,25 @@ class InquiriesScreen extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: ListView(
         children: inquiries
-            .map((inquiry) => InquiryListItem(
-                  inquiry: inquiry,
-                  onTap: () {
-                    Navigator.of(context).pushNamed(InquiryScreen.routeName);
-                    BlocProvider.of<InquiryBloc>(context).add(
-                      SelectInquiry(inquiry: inquiry),
-                    );
-                  },
-                ))
+            .map(
+              (inquiry) => InquiryListItem(
+                inquiry: inquiry,
+                onTap: () {
+                  Navigator.of(context).pushNamed(InquiryScreen.routeName).then(
+                        (resolvedId) =>
+                            BlocProvider.of<InquiriesBloc>(context).add(
+                          DeleteResolved(
+                            currentInquiries: inquiries,
+                            inquiryId: resolvedId,
+                          ),
+                        ),
+                      );
+                  BlocProvider.of<InquiryBloc>(context).add(
+                    SelectInquiry(inquiry: inquiry),
+                  );
+                },
+              ),
+            )
             .toList(),
       ),
     );

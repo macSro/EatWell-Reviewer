@@ -6,6 +6,7 @@ import 'package:eat_well_review/bloc/user/user_event.dart';
 import 'package:eat_well_review/repositories/inquiries_repository.dart';
 import 'package:eat_well_review/repositories/inquiry_repository.dart';
 import 'package:eat_well_review/repositories/user_repository.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,12 +18,13 @@ class FireBlocWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
+    FirebaseStorage storage = FirebaseStorage.instance;
     UserRepository userRepository = UserRepository(firestore: firestore);
     InquiriesRepository inquiriesRepository =
         InquiriesRepository(firestore: firestore);
     InquiryRepository inquiryRepository =
-        InquiryRepository(firestore: firestore);
-        
+        InquiryRepository(firestore: firestore, storage: storage);
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(

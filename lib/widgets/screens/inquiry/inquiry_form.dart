@@ -107,9 +107,11 @@ class _InquiryFormState extends State<InquiryForm> {
                                       Container(
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: kPrimaryColorLight),
+                                            color: kPrimaryColorLight,
+                                            width: 3,
+                                          ),
                                           borderRadius:
-                                              BorderRadius.circular(16),
+                                              BorderRadius.circular(19),
                                         ),
                                         child: ClipRRect(
                                           borderRadius:
@@ -160,8 +162,27 @@ class _InquiryFormState extends State<InquiryForm> {
                       .headline5
                       .copyWith(color: Colors.white),
                 ),
-                onPressed: () => BlocProvider.of<InquiryBloc>(context).add(
-                  RejectInquiry(inquiryId: widget.inquiryId),
+                onPressed: () => showDialog(
+                  context: context,
+                  child: AlertDialog(
+                    title: Text('Do you want to reject the inquiry?'),
+                    actions: [
+                      FlatButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text('Cancel'),
+                      ),
+                      RaisedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          BlocProvider.of<InquiryBloc>(context).add(
+                            RejectInquiry(inquiryId: widget.inquiryId),
+                          );
+                        },
+                        child: Text('Reject'),
+                        color: Colors.redAccent,
+                      ),
+                    ],
+                  ),
                 ),
                 color: Colors.redAccent,
               ),
@@ -179,8 +200,31 @@ class _InquiryFormState extends State<InquiryForm> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
-                    BlocProvider.of<InquiryBloc>(context).add(
-                      AcceptInquiry(inquiryId: widget.inquiryId),
+                    showDialog(
+                      context: context,
+                      child: AlertDialog(
+                        title: Text('Do you want to accept the inquiry?'),
+                        actions: [
+                          FlatButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text('Cancel'),
+                          ),
+                          RaisedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              BlocProvider.of<InquiryBloc>(context).add(
+                                AcceptInquiry(
+                                  inquiryId: widget.inquiryId,
+                                  productName: nameController.text,
+                                  file: image,
+                                ),
+                              );
+                            },
+                            child: Text('Accept'),
+                            color: Colors.green,
+                          ),
+                        ],
+                      ),
                     );
                   }
                 },

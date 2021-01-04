@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="eat_well_review"
+        android:label="EatWell XO Reviewer"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
         <activity

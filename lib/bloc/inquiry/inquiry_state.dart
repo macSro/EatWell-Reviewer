@@ -26,8 +26,9 @@ class InquirySelected extends InquiryState {
 
 class InquiryResolved extends InquiryState {
   final bool successful;
+  final String inquiryId;
 
-  InquiryResolved({@required this.successful});
+  InquiryResolved({@required this.successful, @required this.inquiryId});
 
   @override
   List<Object> get props => [];

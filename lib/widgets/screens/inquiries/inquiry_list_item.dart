@@ -14,21 +14,17 @@ class InquiryListItem extends StatelessWidget {
       elevation: 4,
       child: ListTile(
         title: Text(
-          '"${inquiry.productName}"',
+          'Missing product: "${inquiry.productName}"',
           style: Theme.of(context).textTheme.headline6.copyWith(fontSize: 18),
         ),
         subtitle: Text(
-          '${inquiry.date.day}-${inquiry.date.month}-${inquiry.date.year}',
+          'Reported: ${inquiry.date.day}-${inquiry.date.month}-${inquiry.date.year}',
           style: Theme.of(context)
               .textTheme
               .bodyText1
               .copyWith(fontStyle: FontStyle.italic, fontSize: 13),
         ),
-        trailing: IconButton(
-          padding: EdgeInsets.zero,
-          icon: Icon(Icons.delete_rounded, color: Colors.redAccent),
-          onPressed: () {},
-        ),
+        trailing: Icon(Icons.chevron_right_rounded, size: 32),
         onTap: onTap,
       ),
     );

@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:eat_well_review/models/inquiry.dart';
-import 'package:eat_well_review/models/product.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
@@ -17,12 +18,13 @@ class SelectInquiry extends InquiryEvent {
 
 class AcceptInquiry extends InquiryEvent {
   final String inquiryId;
-  final Product product;
+  final String productName;
+  final File file;
 
-  AcceptInquiry({this.inquiryId, this.product});
+  AcceptInquiry({@required this.inquiryId, @required this.productName, this.file});
 
   @override
-  List<Object> get props => [inquiryId, product];
+  List<Object> get props => [inquiryId, productName];
 }
 
 class RejectInquiry extends InquiryEvent {

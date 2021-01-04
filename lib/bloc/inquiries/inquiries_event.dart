@@ -18,3 +18,13 @@ class UpdateInquiries extends InquiriesEvent {
   @override
   List<Object> get props => [currentInquiries];
 }
+
+class DeleteResolved extends InquiriesEvent {
+  final List<Inquiry> currentInquiries;
+  final String inquiryId;
+
+  DeleteResolved({@required this.currentInquiries, @required this.inquiryId});
+
+  @override
+  List<Object> get props => [inquiryId];
+}

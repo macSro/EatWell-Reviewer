@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:eat_well_review/models/inquiry.dart';
 import 'package:eat_well_review/models/product.dart';
@@ -21,7 +23,7 @@ class InquiryBloc extends Bloc<InquiryEvent, InquiryState> {
     if (event is SelectInquiry)
       yield* _selectRecipe(event.inquiry);
     else if (event is AcceptInquiry)
-      yield* _acceptInquiry(event.inquiryId, event.product);
+      yield* _acceptInquiry(event.inquiryId, event.productName, event.file);
     else if (event is RejectInquiry) yield* _rejectInquiry(event.inquiryId);
   }
 
@@ -33,18 +35,23 @@ class InquiryBloc extends Bloc<InquiryEvent, InquiryState> {
 
   Stream<InquiryState> _acceptInquiry(
     String inquiryId,
-    Product product,
+    String productName,
+    File file,
   ) async* {
     yield InquiryLoading();
 
-    yield InquiryResolved(successful: (await _repository.acceptInquiry(inquiryId, product) != null));
+    yield InquiryResolved(
+      inquiryId: inquiryId,
+      successful: (await _repository.acceptInquiry(inquiryId, productName, file) != null),
+    );
   }
 
-  Stream<InquiryState> _rejectInquiry(
-    String inquiryId
-  ) async* {
+  Stream<InquiryState> _rejectInquiry(String inquiryId) async* {
     yield InquiryLoading();
 
-    yield InquiryResolved(successful: (await _repository.deleteInquiry(inquiryId) != null));
+    yield InquiryResolved(
+      inquiryId: inquiryId,
+      successful: (await _repository.deleteInquiry(inquiryId) != null),
+    );
   }
 }

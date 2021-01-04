@@ -19,7 +19,7 @@ class InquiriesLoading extends InquiriesState {
 class InquiriesFetched extends InquiriesState {
   final List<Inquiry> inquiries;
 
-  InquiriesFetched({this.inquiries});
+  InquiriesFetched({@required this.inquiries});
 
   @override
   List<Object> get props => [inquiries];
