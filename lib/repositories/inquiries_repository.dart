@@ -21,7 +21,12 @@ class InquiriesRepository {
                 productName: data['productName'],
                 date: (data['date'] as Timestamp).toDate(),
               );
-            }).toList());
+            }).toList())
+        .catchError(
+      (error) {
+        print(error.toString());
+      },
+    );
   }
 
   Future<List<Inquiry>> fetchNewInquiries(DateTime lastUpdated) {
@@ -37,6 +42,11 @@ class InquiriesRepository {
                 productName: data['productName'],
                 date: (data['date'] as Timestamp).toDate(),
               );
-            }).toList());
+            }).toList())
+        .catchError(
+      (error) {
+        print(error.toString());
+      },
+    );
   }
 }

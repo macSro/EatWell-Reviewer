@@ -3,6 +3,12 @@ class Tools {
     return val.replaceAll(RegExp(' +'), '-').toLowerCase() + '.jpg';
   }
 
+  static String getDate(DateTime date) {
+    String day = date.day < 10 ? '0${date.day}' : '${date.day}';
+    String month = date.month < 10 ? '0${date.month}' : '${date.month}';
+    return '$day-$month-${date.year}';
+  }
+
   static String validatePassword(String val) {
     Pattern pattern =
         r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';

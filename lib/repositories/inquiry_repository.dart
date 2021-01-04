@@ -1,10 +1,8 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:eat_well_review/models/product.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../constants.dart';
 import '../tools.dart';
@@ -27,7 +25,7 @@ class InquiryRepository {
     File file,
   ) async {
     try {
-      return _firestore.collection('products').add({
+      return await _firestore.collection('products').add({
         'name': productName,
         'imageUrl': (await _uploadImage(productName, file)) ??
             kIngredientImageUrlBasePath + 'unknown.jpg',
@@ -42,7 +40,7 @@ class InquiryRepository {
 
   Future<bool> deleteInquiry(String inquiryId) async {
     try {
-      return _firestore
+      return await _firestore
           .collection('inquiries')
           .doc(inquiryId)
           .delete()

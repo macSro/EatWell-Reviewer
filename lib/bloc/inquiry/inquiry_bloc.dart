@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:eat_well_review/models/inquiry.dart';
-import 'package:eat_well_review/models/product.dart';
 import 'package:eat_well_review/repositories/inquiry_repository.dart';
 import 'package:flutter/foundation.dart';
 

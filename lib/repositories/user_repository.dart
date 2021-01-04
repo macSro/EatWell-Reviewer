@@ -17,9 +17,8 @@ class UserRepository {
   Future<UserCredential> signIn(String email, String password) async {
     try {
       bool isReviewer = await isUserReviewer(email);
-      print('osUserReviewer: $isReviewer');
       return isReviewer
-          ? _firebaseAuth.signInWithEmailAndPassword(
+          ? await _firebaseAuth.signInWithEmailAndPassword(
               email: email,
               password: password,
             )
@@ -32,7 +31,7 @@ class UserRepository {
 
   Future<bool> isUserReviewer(String email) async {
     try {
-      return _firestore
+      return await _firestore
           .collection('reviewers')
           .where('email', isEqualTo: email)
           .get()
@@ -46,7 +45,7 @@ class UserRepository {
   ///Handles signing out.
   Future<bool> signOut() async {
     try {
-      return _firebaseAuth.signOut().then((_) => true);
+      return await _firebaseAuth.signOut().then((_) => true);
     } catch (exception) {
       print(exception.toString());
       return null;
