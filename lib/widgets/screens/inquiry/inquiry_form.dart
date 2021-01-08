@@ -32,17 +32,8 @@ class _InquiryFormState extends State<InquiryForm> {
         if (nameController.text.isNotEmpty) {
           focus1 = true;
         }
-        //focus2 = false;
       });
     });
-    // passwordController.addListener(() {
-    //   setState(() {
-    //     if (passwordController.text.isNotEmpty) {
-    //       focus2 = true;
-    //     }
-    //     focus1 = false;
-    //   });
-    // });
     super.initState();
   }
 
@@ -86,7 +77,7 @@ class _InquiryFormState extends State<InquiryForm> {
                             ),
                             const SizedBox(height: 16),
                             RaisedButton(
-                              onPressed: getImage,
+                              onPressed: _getImage,
                               child: Text(
                                 'Pick an image',
                                 style: Theme.of(context)
@@ -146,7 +137,7 @@ class _InquiryFormState extends State<InquiryForm> {
             ],
           ),
         ),
-        Divider(),
+        const Divider(),
         const SizedBox(height: 16),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -237,7 +228,7 @@ class _InquiryFormState extends State<InquiryForm> {
     );
   }
 
-  Future getImage() async {
+  Future _getImage() async {
     final pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
