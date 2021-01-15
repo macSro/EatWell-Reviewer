@@ -23,12 +23,6 @@ class ErrorScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.headline4,
             ),
           ),
-          Center(
-            child: Text(
-              kErrorOccurredMessage,
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ),
           const SizedBox(height: 32),
           RaisedButton(
             onPressed: () => Navigator.pop(context),
