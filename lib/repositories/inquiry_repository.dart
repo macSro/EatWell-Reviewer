@@ -26,7 +26,7 @@ class InquiryRepository {
   ) async {
     try {
       return await _firestore.collection('products').add({
-        'name': productName,
+        'name': productName.toLowerCase(),
         'imageUrl': (await _uploadImage(productName, file)) ??
             kIngredientImageUrlBasePath + 'unknown.jpg',
       }).then(
