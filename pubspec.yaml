@@ -35,11 +35,7 @@ dependencies:
   double_back_to_close_app: ^1.2.0
   flutter_launcher_icons: ^0.8.1
   image_picker: ^0.6.7+17
-  loading:
-    git:
-      url: git://github.com/leonzone/loading.git
-      path: loading
-      ref: 8f5a63f
+  loading: ^1.0.2
 
 flutter_icons:
   image_path: "icon/icon.png"

@@ -18,7 +18,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     _setUpStatusBarAndOrientation();
@@ -33,6 +32,7 @@ class MyApp extends StatelessWidget {
           theme: _getThemeData(),
           initialRoute: SplashScreen.routeName,
           onGenerateRoute: RouteGenerator.generateRoute,
+          debugShowCheckedModeBanner: false,
         ),
       ),
     );

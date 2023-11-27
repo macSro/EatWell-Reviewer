@@ -28,7 +28,7 @@ class InquiryRepository {
       return await _firestore.collection('products').add({
         'name': productName.toLowerCase(),
         'imageUrl': (await _uploadImage(productName, file)) ??
-            kIngredientImageUrlBasePath + 'unknown.jpg',
+            kUnknownIngredientImageUrlPath,
       }).then(
         (_) => deleteInquiry(inquiryId),
       );

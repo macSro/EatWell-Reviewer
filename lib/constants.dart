@@ -21,5 +21,5 @@ const kTextColorSecondary = Color(0xFF757575);
 const kDividerColor = Color(0xFFBDBDBD);
 
 //PATHS
-const kIngredientImageUrlBasePath =
-    'https://spoonacular.com/cdn/ingredients_100x100/';
+const kUnknownIngredientImageUrlPath =
+    'https://spoonacular.com/cdn/ingredients_100x100/unknown.jpg';
